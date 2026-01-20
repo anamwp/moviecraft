@@ -1,0 +1,5 @@
+@import './vendors/tailwind.scss';
+@import './components/blocks/movie.scss';
+@import './components/blocks/pagination.scss';
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2Fzc2V0cy9zY3NzL21haW4uc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgJy4vdmVuZG9ycy90YWlsd2luZC5zY3NzJztcbkBpbXBvcnQgJy4vY29tcG9uZW50cy9ibG9ja3MvbW92aWUuc2Nzcyc7XG5AaW1wb3J0ICcuL2NvbXBvbmVudHMvYmxvY2tzL3BhZ2luYXRpb24uc2Nzcyc7XG4iXX0= */
