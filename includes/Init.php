@@ -25,24 +25,9 @@ class Init
 		 * Gutenberg block
 		 */
 		Blocks\Block::init();
-		Blocks\Inc\Class_Post_List_Tab_Callback::init();
 		/**
 		 * Plugin Option Panel under settings menu.
 		 */
 		Admin\Options::init();
-		/**
-		 * WooCommerce Product
-		 * Add custom tab and few extra fields to product add/edit page
-		 */
-		Admin\Product_Tab::init();
-		/**
-		 * REST API
-		 */
-		REST\Post_Meta::init();
-		/**
-		 * Cron
-		 * Command - wp cron event run update_movie_block_event
-		 */
-		// CRON\Movie::init();
 	}
 }

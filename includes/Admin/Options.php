@@ -32,14 +32,14 @@ class Options
 	{
 		if (is_admin()) {
 			add_action('admin_menu', array($this, 'moviecraft_plugin_settings_page'));
-			add_action('admin_init', array($this, 'register_settings'));
+			add_action('admin_init', array($this, 'moviecraft_register_settings'));
 		}
 	}
 
 	/**
 	 * Register plugin settings
 	 */
-	public function register_settings()
+	public function moviecraft_register_settings()
 	{
 		// Movie Lists Block API Key
 		register_setting(

@@ -1,0 +1,14 @@
+/vendor/
+node_modules
+build/
+# /dist/
+*.lock
+.env
+report.txt
+.phpunit.result.cache
+test-results/
+playwright-report/
+coverage/
+coverage-html/
+coverage.xml
+coverage.txt
