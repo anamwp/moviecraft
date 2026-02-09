@@ -1,31 +1,24 @@
-# Things are setup inside this plugin.
+# MovieCraft Plugin
 
--   Composer
--   File autoload
--   Gulp automation
--   Shortcode Class
--   Demo Post Type Class
+MovieCraft is a WordPress plugin that provides Gutenberg blocks for displaying movie content powered by The Movie Database (TMDb) API. It includes dynamic blocks for movie listings, sliders, and theatre shows with customizable display options.
 
-## Environment Configuration
+## Blocks (from src/blocks)
 
-### API Key Setup
+-   **Movie Lists**: General movie listing block with genre filtering and layout customization
+-   **Theatres Movies**: Displays currently showing movies in theatres
+-   **Top Rated Movie Lists**: Showcases top-rated movies from TMDb
+-   **Upcoming Movie Slider**: Interactive slider for upcoming movie releases with Interactivity API support
+-   **Upcoming Movies**: Grid display of upcoming movies with genre filtering
 
-The plugin uses The Movie Database (TMDb) API for the movie lists block. You can configure the API key in two ways:
+## Admin Options (includes/Admin)
 
-#### Method 1: WordPress Admin (Recommended)
+### Movie Craft Settings
 
-1. Go to **Settings > Gutenberg Starter** in your WordPress admin
-2. Enter your TMDb API key in the "The Movie Database API Key" field
-3. Click "Save Changes"
+Access the settings page at **Settings > Movie Craft** in your WordPress admin panel:
 
-#### Method 2: Environment Variables
-
-1. Copy `.env.example` to `.env` in the plugin root directory
-2. Add your API key to the `.env` file:
-    ```
-    MOVIE_BEARER_TOKEN=your_actual_bearer_token_here
-    ```
-3. Make sure your WordPress installation loads environment variables
+-   **The Movie Database API Key**: Configure your TMDb API key for all movie blocks
+    -   The key is stored securely and not exposed via REST API
+    -   Required for all movie-related blocks to function
 
 ### Getting a TMDb API Key
 
@@ -34,17 +27,19 @@ The plugin uses The Movie Database (TMDb) API for the movie lists block. You can
 3. Request an API key
 4. Use the API Read Access Token (v4 auth) for bearer token authentication
 
-### Priority Order
+### Alternative: Environment Variables
 
-The plugin checks for the API key in this order:
+You can also configure the API key via environment variables:
 
-1. WordPress admin settings (highest priority)
-2. PHP constant `MOVIE_BEARER_TOKEN`
-3. Environment variable `$_ENV['MOVIE_BEARER_TOKEN']` (lowest priority)
+1. Copy `.env.example` to `.env` in the plugin root directory
+2. Add your API key:
+    ```
+    MOVIE_BEARER_TOKEN=your_actual_bearer_token_here
+    ```
 
-## Installation Command
+**Priority Order**: WordPress admin settings (highest) > PHP constant `MOVIE_BEARER_TOKEN` > Environment variable (lowest)
 
-Please follow the below instruction to setup you plugin.
+## Setup
 
 #### Composer setup
 
@@ -52,7 +47,7 @@ Please follow the below instruction to setup you plugin.
 
 #### Install node dependencies
 
-`npm install` `or` `yarn install`
+`npm install` or `yarn install`
 
 #### Start development
 
@@ -62,24 +57,39 @@ Please follow the below instruction to setup you plugin.
 
 `npm run build`
 
-#### Automation Command
+#### How to create a block inside src directory
 
--   To compile and watch sass and js `gulp`
--   To zip plugin `gulp package` . Please check the specific command for more details in `gulpfile.js` If you want to change the package zip name, you need to change the name inside `package` command.
--   To clean the zip and dist directory `gulp clean`
+`npx @wordpress/create-block@latest your-block-name --variant=dynamic --no-plugin`
 
-#### How to translate a string
+## Testing
 
-`import { __ } from '@wordpress/i18n';
-console.log( __('My log text here', 'text-domain') );`
+#### Jest (Unit Tests)
 
-#### How to create a block inside src directory.
+`npm run jest`
 
-`npx @wordpress/create-block@latest example-one --variant=dynamic --no-plugin`
-`npx @wordpress/create-block@latest example-two --variant=dynamic --no-plugin`
+Run with coverage:
+`npm run jest -- --coverage`
+
+Watch mode:
+`npm run jest:watch`
+
+#### PHP Unit
+
+Setup testing environment:
+`bin/install-wp-tests.sh moviecraft root '' localhost 6.4.3`
+
+Run tests:
+`./vendor/bin/phpunit`
+
+Run specific test file:
+`./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/test-admin-options.php --verbose`
+
+#### E2E Tests
+
+`npm run test:e2e`
 
 ### Important links
 
-[@wordpress/scripts documentation from developer wordpress blog](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/)
+[@wordpress/scripts documentation](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/)
 [Minimal Block Example](https://github.com/WordPress/block-development-examples/tree/trunk/plugins/minimal-block-ca6eda)
-[How to enqueue assets from build dir with dependency and verions](https://github.com/WordPress/block-development-examples/blob/trunk/plugins/data-basics-59c8f8/plugin.php)
+[Block Development Examples](https://github.com/WordPress/block-development-examples/blob/trunk/plugins/data-basics-59c8f8/plugin.php)
